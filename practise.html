@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Warming</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            background: linear-gradient( to bottom, #ffd36e 0%, #ff9f43 25%, #ff5e3a 55%, #c92a2a 80%, #5a1e1e 100%);
+        }
+        
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        /* title */
+        
+        .title {
+            position: absolute;
+            top: 40px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .title h1 {
+            font-size: 3rem;
+            letter-spacing: 3px;
+        }
+        
+        .title p {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        /* sun */
+        
+        .sun {
+            position: absolute;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, #fff3b0 0%, #ffb703 45%, #ff5a00 75%, rgba(255, 90, 0, 0.2) 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px #ff8c42, 0 0 100px rgba(255, 80, 0, 0.8);
+            animation: pulse 3s infinite ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.08);
+            }
+        }
+        /* heat waves */
+        
+        .heat {
+            position: absolute;
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 360px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+            filter: blur(20px);
+            animation: shimmer 4s infinite ease-in-out;
+        }
+        
+        @keyframes shimmer {
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translateX(-50%) scale(1.12);
+                opacity: 0.7;
+            }
+        }
+        /* city */
+        
+        .city {
+            position: absolute;
+            bottom: 220px;
+            width: 100%;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 18px;
+            z-index: 3;
+        }
+        
+        .building {
+            background: linear-gradient(to bottom, #444, #1f1f1f);
+            width: 60px;
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            box-shadow: 0 -10px 20px rgba(255, 80, 0, 0.15);
+        }
+        
+        .building::before {
+            content: "";
+            position: absolute;
+            inset: 8px;
+            background-image: linear-gradient(to right, rgba(255, 180, 80, 0.6) 20%, transparent 20%, transparent 40%, rgba(255, 180, 80, 0.6) 40%, rgba(255, 180, 80, 0.6) 60%, transparent 60%, transparent 80%, rgba(255, 180, 80, 0.6) 80%);
+            background-size: 100% 22px;
+            opacity: 0.55;
+        }
+        
+        .b1 {
+            height: 100px;
+        }
+        
+        .b2 {
+            height: 150px;
+        }
+        
+        .b3 {
+            height: 120px;
+        }
+        
+        .b4 {
+            height: 170px;
+        }
+        
+        .b5 {
+            height: 135px;
+        }
+        
+        .b6 {
+            height: 110px;
+        }
+        /* mountains / ice */
+        
+        .ice-area {
+            position: absolute;
+            bottom: 170px;
+            width: 100%;
+            height: 160px;
+            z-index: 2;
+        }
+        
+        .iceberg {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(to bottom, #d9f3ff, #9ed8e6);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            opacity: 0.9;
+            animation: melt 6s infinite ease-in-out;
+        }
+        
+        .ice1 {
+            left: 10%;
+            width: 180px;
+            height: 140px;
+        }
+        
+        .ice2 {
+            left: 72%;
+            width: 220px;
+            height: 160px;
+        }
+        
+        .ice3 {
+            left: 35%;
+            width: 140px;
+            height: 110px;
+        }
+        
+        @keyframes melt {
+            0% {
+                transform: scaleY(1) translateY(0);
+            }
+            50% {
+                transform: scaleY(0.82) translateY(18px);
+            }
+            100% {
+                transform: scaleY(1) translateY(0);
+            }
+        }
+        /* melted ground */
+        
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(to top, #2b0f0f, #5f1f1f, #8f2d2d);
+            z-index: 1;
+        }
+        
+        .lava {
+            position: absolute;
+            bottom: 70px;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background: radial-gradient(circle at 10% 50%, rgba(255, 180, 0, 0.8) 0 20px, transparent 22px), radial-gradient(circle at 30% 60%, rgba(255, 120, 0, 0.8) 0 25px, transparent 27px), radial-gradient(circle at 55% 40%, rgba(255, 170, 0, 0.75) 0 20px, transparent 22px), radial-gradient(circle at 75% 65%, rgba(255, 90, 0, 0.75) 0 30px, transparent 32px), radial-gradient(circle at 90% 40%, rgba(255, 140, 0, 0.75) 0 18px, transparent 20px);
+            opacity: 0.75;
+            filter: blur(6px);
+            animation: lavaMove 4s infinite alternate ease-in-out;
+        }
+        
+        @keyframes lavaMove {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(10px);
+            }
+        }
+        /* drips */
+        
+        .drip {
+            position: absolute;
+            width: 16px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(173, 216, 230, 0.9), rgba(173, 216, 230, 0.1));
+            border-radius: 0 0 10px 10px;
+            animation: drop 3s infinite ease-in;
+        }
+        
+        .d1 {
+            left: 14%;
+            bottom: 140px;
+        }
+        
+        .d2 {
+            left: 40%;
+            bottom: 135px;
+            animation-delay: 1s;
+        }
+        
+        .d3 {
+            left: 79%;
+            bottom: 150px;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes drop {
+            0% {
+                height: 20px;
+                opacity: 0.3;
+            }
+            50% {
+                height: 70px;
+                opacity: 0.9;
+            }
+            100% {
+                height: 20px;
+                opacity: 0.3;
+            }
+        }
+        /* smoke overlay */
+        
+        .smoke {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(0, 0, 0, 0.15) 70%, rgba(0, 0, 0, 0.35) 100%);
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        @media (max-width: 768px) {
+            .title h1 {
+                font-size: 2rem;
+            }
+            .title p {
+                font-size: 0.95rem;
+                padding: 0 20px;
+            }
+            .sun {
+                width: 130px;
+                height: 130px;
+                top: 110px;
+            }
+            .city {
+                gap: 10px;
+            }
+            .building {
+                width: 38px;
+            }
+            .ice1,
+            .ice2,
+            .ice3 {
+                transform-origin: bottom;
+            }
+            .ice1 {
+                width: 120px;
+                height: 90px;
+            }
+            .ice2 {
+                width: 150px;
+                height: 110px;
+            }
+            .ice3 {
+                width: 100px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scene">
+        <div class="title">
+            <h1>GLOBAL WARMING</h1>
+            <p>From warmth to heat, from heat to collapse.</p>
+        </div>
+
+        <div class="sun"></div>
+        <div class="heat"></div>
+
+        <div class="city">
+            <div class="building b1"></div>
+            <div class="building b2"></div>
+            <div class="building b3"></div>
+            <div class="building b4"></div>
+            <div class="building b5"></div>
+            <div class="building b6"></div>
+        </div>
+
+        <div class="ice-area">
+            <div class="iceberg ice1"></div>
+            <div class="iceberg ice2"></div>
+            <div class="iceberg ice3"></div>
+        </div>
+
+        <div class="drip d1"></div>
+        <div class="drip d2"></div>
+        <div class="drip d3"></div>
+
+        <div class="ground"></div>
+        <div class="lava"></div>
+
+        <div class="smoke"></div>
+    </div>
+</body>
+
+</html>
