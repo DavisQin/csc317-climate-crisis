@@ -155,6 +155,7 @@ body {
 .container {
     width: 85%;
     margin: auto;
+    flex: 1;
 }
 
 .content-box {
